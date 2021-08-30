@@ -1,2 +1,3 @@
 # Algorithms
-Algorithm practice
+
+- This repository is for practicing basic algorithms
