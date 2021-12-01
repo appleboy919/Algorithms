@@ -159,9 +159,6 @@ class Graph {
         String vertex;
         List<String> nodes = new ArrayList<>();
         graph.adjList.keySet().stream().forEach(v -> nodes.add(v.label));
-        for (String s : nodes) {
-            System.out.println(s + "!");
-        }
         for (String v : nodes) {
             if (!visited.contains(v)) {
                 st.clear();
@@ -170,12 +167,9 @@ class Graph {
                     vertex = st.pop();
                     if (!visited.contains(vertex)) {
                         visited.add(vertex);
-                        System.out.print(v + ": ");
                         for (Vertex v1 : graph.getAdjVertices(vertex)) {
                             st.push(v1.label);
-                            System.out.print(v1.label + " ");
                         }
-                        System.out.println();
                     }
                 }
                 count++;
@@ -201,6 +195,10 @@ class Graph {
         // graph.adjList.values().stream().forEach(e -> System.out.println(e.size()));
 
         // test connectComponentCount
-        System.out.println(graph.connectedComponentCount(graph));
+        System.out.println("Component: " + graph.connectedComponentCount(graph));
+        graph.addVertex("F");
+        graph.addVertex("G");
+        graph.addEdge("F", "G");
+        System.out.println("Component: " + graph.connectedComponentCount(graph));
     }
 }
