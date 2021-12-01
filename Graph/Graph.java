@@ -178,6 +178,29 @@ class Graph {
         return count;
     }
 
+    boolean isCyclic(Graph graph) {
+        if (graph.adjList.keySet().size() == 0)
+            return false;
+        List<String> nodes = new ArrayList<>();
+        graph.adjList.keySet().stream().forEach(v -> nodes.add(v.label));
+        Stack<String> st = new Stack<>();
+        String vertex;
+        for (String v : nodes) {
+            st.clear();
+            st.push(v);
+            while (!st.isEmpty()) {
+                vertex = st.pop();
+                for (Vertex v1 : graph.getAdjVertices(vertex)) {
+                    if (st.contains(v1.label) || v1.label.equals(vertex)
+                            || graph.getAdjVertices(v1.label).contains(new Vertex(vertex)))
+                        return true;
+                    st.push(v1.label);
+                }
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         Graph graph = new Graph();
         graph.addVertex("A");
@@ -200,5 +223,13 @@ class Graph {
         graph.addVertex("G");
         graph.addEdge("F", "G");
         System.out.println("Component: " + graph.connectedComponentCount(graph));
+
+        // test isCyclic
+        System.out.println("Cyclic?\t" + graph.isCyclic(graph));
+        graph.addEdge("G", "F");
+        System.out.println("Cyclic?\t" + graph.isCyclic(graph));
+        graph.addEdge("C", "A");
+        System.out.println("Cyclic?\t" + graph.isCyclic(graph));
+
     }
 }
