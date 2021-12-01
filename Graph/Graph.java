@@ -93,4 +93,42 @@ class Graph {
         }
         return visited;
     }
+
+    // Time: O(Edges) Space: O(Nodes)
+    boolean hasPath_dfs(Graph graph, String start, String end) {
+        Set<String> visited = new LinkedHashSet<>();
+        Stack<String> st = new Stack<>();
+        st.push(start);
+        while (!st.isEmpty()) {
+            String vertex = st.pop();
+            if (!visited.contains(vertex)) {
+                if (vertex.equals(end))
+                    return true;
+                visited.add(vertex);
+                for (Vertex v : graph.getAdjVertices(vertex)) {
+                    st.add(v.label);
+                }
+            }
+        }
+        return false;
+    }
+
+    boolean hasPath_bfs(Graph graph, String start, String end) {
+        Set<String> visited = new LinkedHashSet<>();
+        Queue<String> q = new LinkedList<>();
+        visited.add(start);
+        q.add(start);
+        while (!q.isEmpty()) {
+            String vertex = q.poll();
+            for (Vertex v : graph.getAdjVertices(vertex)) {
+                if (v.label.equals(end))
+                    return true;
+                if (!visited.contains(v.label)) {
+                    visited.add(v.label);
+                    q.add(v.label);
+                }
+            }
+        }
+        return false;
+    }
 }
