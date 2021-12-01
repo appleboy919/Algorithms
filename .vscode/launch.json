@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch BinarySearch",
+            "request": "launch",
+            "mainClass": "BinarySearch.BinarySearch",
+            "projectName": "Algorithms_7c8f9d8e"
+        },
+        {
+            "type": "java",
             "name": "Launch Graph",
             "request": "launch",
             "mainClass": "Graph.Graph",
