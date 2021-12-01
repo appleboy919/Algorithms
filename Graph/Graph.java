@@ -201,6 +201,44 @@ class Graph {
         return false;
     }
 
+    static class QNode implements Comparable<QNode> {
+        String vertex;
+        Integer dist;
+
+        QNode(String v, Integer d) {
+            vertex = v;
+            dist = d;
+        }
+
+        @Override
+        public int compareTo(QNode o) {
+            return this.dist - o.dist;
+        }
+    }
+
+    /*
+     * Map<String, Integer> dijkstra_shortestPath(Graph graph, String start, String
+     * end) {
+     * // set-up
+     * Map<String, Integer> dist = new HashMap<>();
+     * dist.put(start, 0);
+     * Map<String, String> pred = new HashMap<>();
+     * PriorityQueue<QNode> pq = new PriorityQueue<>();
+     * Map<String, Integer> weights = new HashMap<>();
+     * for (Vertex v: graph.adjList.keySet()) {
+     * dist.putIfAbsent(v.label, Integer.MAX_VALUE);
+     * pq.add(new QNode(v.label, dist.get(v.label)));
+     * }
+     * while (!pq.isEmpty()) {
+     * QNode top = pq.remove();
+     * for (Vertex v: graph.getAdjVertices(top.vertex)) {
+     * 
+     * }
+     * }
+     * 
+     * }
+     */
+
     public static void main(String[] args) {
         Graph graph = new Graph();
         graph.addVertex("A");
