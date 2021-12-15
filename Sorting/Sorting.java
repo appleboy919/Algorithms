@@ -3,7 +3,11 @@ package Sorting;
 import java.util.*;
 
 public class Sorting {
-    int selectionSort(List<Integer> list, int target) {
-        return 0;
+    int[] selectionSort(int[] arr) {
+        return null;
+    }
+
+    int[] countingSort(int[] arr) {
+        return null;
     }
 }
